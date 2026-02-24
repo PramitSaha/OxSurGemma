@@ -1,6 +1,6 @@
 # OxSurGemma - A Surgical AI-Copilot for Laparoscopic Cholecystectomy
 
-An AI-powered surgical co-pilot for laparoscopic cholecystectomy that combines a multi-tool agent framework with specialised vision models, LLM-based tool routing, speech I/O, and RAG retrieval.
+A MedGemma-powered surgical co-pilot for laparoscopic cholecystectomy that combines a multi-tool agent framework with specialised vision models, LLM-based tool routing, speech I/O, and RAG retrieval.
 
 ## 🎥 Demo Videos
 
