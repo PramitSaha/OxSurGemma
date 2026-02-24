@@ -44,15 +44,16 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 
 | Component | Weights |
 |---|---|
+| MedGemma-27B-LoRA (Fine-tuned for Tool use and Surgeon-facing Response)| [pramit-saha/oxsurgemma-tool-use-lora-27b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-27b) |
+| MedGemma-4B-LoRA (Fine-tuned for Tool use and Surgeon-facing Response)| [pramit-saha/oxsurgemma-tool-use-lora-4b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-4b) |
+| MedGemma-4B-LoRA (Fine-tuned for Surgical Scene Graph VQA) | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
 | Critical View of Safety (CVS) | [pramit-saha/oxsurgemma-cvs](https://huggingface.co/pramit-saha/oxsurgemma-cvs) |
-| Object Detection | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
+| Surgical Instruments and Critical Anatomy Detection | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
 | Scene Segmentation | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
 | Phase Detection | [pramit-saha/oxsurgemma-phase-detection](https://huggingface.co/pramit-saha/oxsurgemma-phase-detection) |
 | CholecT50 Heads | [pramit-saha/oxsurgemma-cholect50-heads](https://huggingface.co/pramit-saha/oxsurgemma-cholect50-heads) |
 | Frame Attributes | [pramit-saha/oxsurgemma-frame-attributes](https://huggingface.co/pramit-saha/oxsurgemma-frame-attributes) |
-| SSG VQA | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
-| Tool-use LoRA (27B) | [pramit-saha/oxsurgemma-tool-use-lora-27b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-27b) |
-| Tool-use LoRA (4B) | [pramit-saha/oxsurgemma-tool-use-lora-4b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-4b) |
+
 
 ## Quick start
 
