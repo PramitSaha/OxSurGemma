@@ -39,9 +39,6 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
     </td>
   </tr>
 </table>
-## Quick start
-
-```bash
 
 ## 🤗 Model Zoo (Hugging Face)
 
@@ -56,6 +53,10 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 | SSG VQA | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
 | Tool-use LoRA (27B) | [pramit-saha/oxsurgemma-tool-use-lora-27b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-27b) |
 | Tool-use LoRA (4B) | [pramit-saha/oxsurgemma-tool-use-lora-4b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-4b) |
+
+## Quick start
+
+```bash
 
 # 1. Clone this repo and MedRAX (agent framework)
 git clone <this-repo>
