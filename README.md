@@ -186,31 +186,10 @@ Key packages: `torch`, `transformers`, `peft`, `langchain`, `langgraph`, `gradio
 
 ### 3. Environment variables
 
-Copy `.env.example` to `.env` and set as needed.
-
 **Default (local LLM — MedGemma + tool-use LoRA):**
 
 - `HF_TOKEN` — Hugging Face token (required for gated MedGemma). Accept the model terms at [huggingface.co/google/medgemma-4b-it](https://huggingface.co/google/medgemma-4b-it), then `huggingface-cli login` or `export HF_TOKEN=hf_...`.
 - Optional: `TRANSFORMERS_CACHE` or `HF_HOME` — cache directory for downloads (default: repo `hf_cache/`).
-
-
-### 4. External files needed to run `main.py`
-
-| What | Location | Purpose |
-|------|----------|---------|
-| **MedRAX** | `MedRAX/` (clone) | Agent framework |
-| **Tool-use LoRA** | `tool_use_lora_checkpoints/medgemma-4b-tool-use-lora` or `.../medgemma-27b-tool-use-lora` | Default LLM (tool routing) |
-| **Phase** | `phase_detection_workflow/best_phase.pt` | Phase detection |
-| **Scene seg** | `scene_segmentation_utils/cholecseg8k_yolov8.py` + `.../runs/.../best.pt` | Scene segmentation |
-| **Frame attributes** | `frame_attributes_tasks/cholec20_model.py` + `.../cholec20_multilabel_checkpoints/best_cholec20_multilabel.pt` | Frame attributes |
-| **Triplet** | `instrument_triplet_tasks/cholect50_model.py` + `cholect50_checkpoints/*.pt` | Triplet recognition |
-| **Instrument** | `instrument_triplet_tasks/runs/tool/.../best.pt` or `frame_attributes_tasks/runs/cholectrack20/...` | Instrument tracking |
-| **Object det** | `object_detection/best_detector_balanced.pt` | Merged object detection |
-| **CVS** | `cvs_models/colenet/` + `cvs_models/log/...` | Critical View of Safety |
-| **SSG VQA** | `ssg_vqa_finetuning/.../checkpoint-7400/` (or 3800) | Visual QA |
-| **RAG** | `surgical_rag/rag_retrieval.py`, `surgical_rag/__init__.py`, `surgical_rag/data/rag_index/` | RAG retrieval |
-
-If a tool’s weights or index are missing, that tool is skipped at startup; the rest still run.
 
 ## Running
 
@@ -262,21 +241,6 @@ export OPENAI_API_KEY=sk-...
 | `--no-share` | Disable Gradio share link |
 | `--hf-cache PATH` | Hugging Face cache directory |
 | `--cvs` | Use single ResNet18 CVS model (default: 4-model ensemble) |
-
-## Model weights summary
-
-| File / folder | Size (approx) | Description |
-|---------------|----------------|-------------|
-| `tool_use_lora_checkpoints/medgemma-4b-tool-use-lora/` | ~2.7 GB | Tool-use LoRA (4B) — default LLM |
-| `tool_use_lora_checkpoints/medgemma-27b-tool-use-lora/` | — | Tool-use LoRA (27B) |
-| `phase_detection_workflow/best_phase.pt` | ~91 MB | Phase detection (8 phases) |
-| `scene_segmentation_utils/.../best.pt` | ~48 MB | Scene segmentation (13 classes) |
-| `frame_attributes_tasks/.../best_cholec20_multilabel.pt` | ~91 MB | Frame attributes |
-| `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` | ~91 MB each | Triplet tool/verb/target |
-| `instrument_triplet_tasks/runs/tool/.../best.pt` | ~134 MB | Instrument detection |
-| `object_detection/best_detector_balanced.pt` | ~6 MB | Merged object detector (13 classes) |
-| `cvs_models/log/*/best_model.pth` | 43–513 MB | CVS models |
-| `ssg_vqa_finetuning/.../checkpoint-7400/` | ~2.7 GB | SSG VQA LoRA |
 
 ## RAG index
 
