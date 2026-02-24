@@ -1,0 +1,51 @@
+# Environment and secrets
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual envs and conda
+.venv/
+venv/
+env/
+
+# Large model weights / caches (host elsewhere or use Git LFS)
+hf_cache/
+tool_use_lora_checkpoints/
+ssg_vqa_finetuning/
+# Weight dirs (document in README where to obtain)
+frame_attributes_tasks/cholec20_multilabel_checkpoints/
+instrument_triplet_tasks/cholect50_checkpoints/
+instrument_triplet_tasks/runs/
+scene_segmentation_utils/runs/
+phase_detection_workflow/workflow_codes/*/
+phase_detection_workflow/best_phase.pt
+cvs_models/log/
+surgical_rag/data/
+object_detection/best_detector_balanced.pt
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+logs/
+*.log
+temp/
+tmp/

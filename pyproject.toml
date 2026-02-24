@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "surgical-copilot"
+version = "0.1.0"
+description = "AI-powered surgical co-pilot for laparoscopic cholecystectomy with multi-tool agent, vision models, and RAG."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "langchain-core>=0.2",
+    "langchain-openai>=0.1",
+    "langgraph>=0.2",
+    "pydantic>=2",
+    "gradio>=4.0.0",
+    "transformers>=4.50.0",
+    "accelerate>=0.20.0",
+    "torch>=2.0.0",
+    "faster-whisper",
+    "gtts",
+    "opencv-python-headless>=4.5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.urls]
+Repository = "https://github.com/your-org/surgical_copilot_release"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["surgical_copilot*"]

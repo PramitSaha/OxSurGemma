@@ -1,0 +1,242 @@
+# Surgical Co-Pilot — Reproducibility Package
+
+An AI-powered surgical co-pilot for laparoscopic cholecystectomy that combines a multi-tool agent framework with specialised vision models, LLM-based tool routing, speech I/O, and RAG retrieval.
+
+## Quick start
+
+```bash
+# 1. Clone this repo and MedRAX (agent framework)
+git clone <this-repo>
+cd surgical_copilot_release
+git clone https://github.com/bowang-lab/MedRAX.git
+pip install -e MedRAX
+
+# 2. Install dependencies (from repo root)
+pip install -e .
+
+# 3. Environment (for local LLM: Hugging Face token; for OpenAI: API key)
+cp .env.example .env
+# Local (default): set HF_TOKEN=... (accept MedGemma terms at huggingface.co first)
+# OpenAI: set SURGICAL_COPILOT_LLM_BACKEND=openai and OPENAI_API_KEY=...
+
+# 4. Run (uses MedGemma 4B + tool-use LoRA by default)
+./run.sh                      # terminal chat
+./run.sh --gradio --port 8585 # web UI
+# Or: python -m surgical_copilot.main [--gradio] [--port 8585]
+```
+
+See [Setup](#setup) and [Running](#running) below for details.
+
+## System overview
+
+The system uses a **MedRAX agent** (LangGraph + LangChain) to orchestrate surgical analysis tools. A user query (text or voice) is routed to the appropriate tool(s) via an LLM. **By default the LLM is local:** MedGemma (4B or 27B) with a **tool-use LoRA adapter** from `tool_use_lora_checkpoints/`, so no OpenAI API is required. You can switch to OpenAI (e.g. GPT-4o) by setting `SURGICAL_COPILOT_LLM_BACKEND=openai` and `OPENAI_API_KEY`.
+
+### Tools and models
+
+| Tool | Model | Architecture | Weights |
+|------|-------|---------------|---------|
+| **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
+| **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/.../best.pt` |
+| **Critical View of Safety** | ColeNet (ResNet18 or ensemble) | 3 CVS criteria | `cvs_models/log/*/best_model.pth` |
+| **Frame Attributes** | ResNet50 + dual heads | 4 operators + 10 conditions | `frame_attributes_tasks/.../best_cholec20_multilabel.pt` |
+| **Triplet Recognition** | ResNet50 (3 heads) + YOLOv8 | Tool/verb/target + 100-class triplet | `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` |
+| **Object Detection** | YOLOv8 | 13 classes (anatomy + instruments) | `object_detection/best_detector_balanced.pt` |
+| **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/.../best.pt` |
+| **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/.../checkpoint-7400/` (or checkpoint-3800) |
+| **RAG Retrieval** | ChromaDB + embeddings | Textbook retrieval | `surgical_rag/data/rag_index/` |
+| **Speech I/O** | Whisper / TTS | ASR and synthesis | Downloaded at runtime |
+
+## Project layout
+
+The repo is organised so that the **core app** (`surgical_copilot/`), **model weights**, and **pipelines** (e.g. `surgical_rag/`) are clearly separated. Optional tools are excluded at startup if their checkpoints are missing.
+
+### Directory structure
+
+```
+surgical_copilot_release/
+├── run.sh                      # Launcher: ./run.sh [--gradio] [--port 8585]
+├── .env.example                # Copy to .env and set HF_TOKEN or OPENAI_API_KEY
+├── pyproject.toml              # pip install -e . from repo root
+├── requirements.txt            # Python dependencies (root)
+│
+├── surgical_copilot/           # Main package (entrypoint: main.py)
+│   ├── main.py                 # Entrypoint: CLI chat or Gradio UI
+│   ├── config.py               # Config: LLM backend, paths, tool-use LoRA
+│   ├── registry.py             # Tool registry
+│   ├── llm_local.py            # Local MedGemma + LoRA adapter loading
+│   ├── parallel_tools.py       # Parallel tool execution (Gradio)
+│   ├── gradio_demo.py          # Gradio web UI
+│   ├── tools/                  # Tool implementations
+│   │   ├── phase_detection.py, scene_segmentation.py, critical_view_of_safety.py
+│   │   ├── frame_attributes.py, triplet_recognition.py, object_detection_merged.py
+│   │   ├── instrument_tracking.py, ssg_vqa.py, rag_retrieval.py, base.py
+│   ├── audio/                  # STT / TTS (Gradio)
+│   └── docs/system_prompts.txt # Agent system prompts
+│
+├── MedRAX/                     # Agent framework (clone separately; required)
+│
+├── tool_use_lora_checkpoints/  # MedGemma LoRA for tool-use routing (default LLM)
+│   ├── medgemma-4b-tool-use-lora/
+│   └── medgemma-27b-tool-use-lora/
+│
+├── phase_detection_workflow/   # Phase detection
+│   ├── best_phase.pt           # Standalone ResNet50 (8 phases)
+│   └── workflow_codes/         # M2CAI16 alternative (optional)
+│
+├── scene_segmentation_utils/   # Scene segmentation
+│   ├── cholecseg8k_yolov8.py   # CLASS_NAMES (required at runtime)
+│   └── runs/segment/train/weights/best.pt
+│
+├── frame_attributes_tasks/     # Frame attributes (inference only)
+│   ├── cholec20_model.py
+│   └── cholec20_multilabel_checkpoints/best_cholec20_multilabel.pt
+│
+├── instrument_triplet_tasks/   # Instrument/triplet (inference only)
+│   ├── cholect50_model.py
+│   ├── cholect50_checkpoints/  # best_tool.pt, best_verb.pt, best_target.pt
+│   └── runs/                   # YOLO tool + triplet weights
+│
+├── object_detection/           # Merged object detector
+│   └── best_detector_balanced.pt
+│
+├── cvs_models/                 # Critical View of Safety
+│   ├── colenet/                # Model definition
+│   ├── run_cvs_inference.py
+│   └── log/                    # Weights (new_cvs_model_1/, colenet_*/)
+│
+├── ssg_vqa_finetuning/         # SSG VQA LoRA
+│   └── surgical_vqa_sft_ssg/checkpoints/checkpoint-7400/
+│
+└── surgical_rag/               # RAG retrieval (runtime: code + index only)
+    ├── __init__.py
+    ├── rag_retrieval.py
+    └── data/rag_index/         # ChromaDB index (build once)
+```
+
+## Setup
+
+### 1. Clone MedRAX (required)
+
+```bash
+cd surgical_copilot_release
+git clone https://github.com/bowang-lab/MedRAX.git
+pip install -e MedRAX
+```
+
+### 2. Install Python dependencies
+
+From the repository root:
+
+```bash
+pip install -e .
+```
+
+Key packages: `torch`, `transformers`, `peft`, `langchain`, `langgraph`, `gradio`, `chromadb`, `sentence-transformers`, `ultralytics`, etc. (see `requirements.txt` and `pyproject.toml`).
+
+### 3. Environment variables
+
+Copy `.env.example` to `.env` and set as needed.
+
+**Default (local LLM — MedGemma + tool-use LoRA):**
+
+- `HF_TOKEN` — Hugging Face token (required for gated MedGemma). Accept the model terms at [huggingface.co/google/medgemma-4b-it](https://huggingface.co/google/medgemma-4b-it), then `huggingface-cli login` or `export HF_TOKEN=hf_...`.
+- Optional: `TRANSFORMERS_CACHE` or `HF_HOME` — cache directory for downloads (default: repo `hf_cache/`).
+
+**Using OpenAI instead of local MedGemma:**
+
+- `SURGICAL_COPILOT_LLM_BACKEND=openai`
+- `OPENAI_API_KEY=sk-...`
+
+**Other optional variables:** `MEDRAX_DIR`, `SURGICAL_COPILOT_LOCAL_MODEL`, `SURGICAL_COPILOT_TOOL_USE_LORA`, etc. (see `.env.example`).
+
+### 4. External files needed to run `main.py`
+
+| What | Location | Purpose |
+|------|----------|---------|
+| **MedRAX** | `MedRAX/` (clone) | Agent framework |
+| **Tool-use LoRA** | `tool_use_lora_checkpoints/medgemma-4b-tool-use-lora` or `.../medgemma-27b-tool-use-lora` | Default LLM (tool routing) |
+| **Phase** | `phase_detection_workflow/best_phase.pt` | Phase detection |
+| **Scene seg** | `scene_segmentation_utils/cholecseg8k_yolov8.py` + `.../runs/.../best.pt` | Scene segmentation |
+| **Frame attributes** | `frame_attributes_tasks/cholec20_model.py` + `.../cholec20_multilabel_checkpoints/best_cholec20_multilabel.pt` | Frame attributes |
+| **Triplet** | `instrument_triplet_tasks/cholect50_model.py` + `cholect50_checkpoints/*.pt` | Triplet recognition |
+| **Instrument** | `instrument_triplet_tasks/runs/tool/.../best.pt` or `frame_attributes_tasks/runs/cholectrack20/...` | Instrument tracking |
+| **Object det** | `object_detection/best_detector_balanced.pt` | Merged object detection |
+| **CVS** | `cvs_models/colenet/` + `cvs_models/log/...` | Critical View of Safety |
+| **SSG VQA** | `ssg_vqa_finetuning/.../checkpoint-7400/` (or 3800) | Visual QA |
+| **RAG** | `surgical_rag/rag_retrieval.py`, `surgical_rag/__init__.py`, `surgical_rag/data/rag_index/` | RAG retrieval |
+
+If a tool’s weights or index are missing, that tool is skipped at startup; the rest still run.
+
+## Running
+
+All commands from the **repository root**.
+
+### Default: terminal chat (MedGemma 4B + tool-use LoRA)
+
+```bash
+./run.sh
+# or: python -m surgical_copilot.main
+```
+
+### Gradio web UI
+
+```bash
+./run.sh --gradio --port 8585
+# or: python -m surgical_copilot.main --gradio --port 8585
+```
+
+### Choosing 4B vs 27B (local LLM)
+
+By default the app uses **MedGemma 4B** and the **4B tool-use LoRA** from `tool_use_lora_checkpoints/`. From the command line you can switch to 27B:
+
+```bash
+# 4B (default)
+./run.sh --gradio
+python -m surgical_copilot.main --medgemma 4b
+
+# 27B (needs more VRAM)
+python -m surgical_copilot.main --gradio --medgemma 27b
+```
+
+### Using OpenAI instead of local MedGemma
+
+```bash
+export SURGICAL_COPILOT_LLM_BACKEND=openai
+export OPENAI_API_KEY=sk-...
+./run.sh --gradio
+```
+
+### CLI flags
+
+| Flag | Description |
+|------|-------------|
+| `--gradio` | Launch Gradio web UI (default: terminal chat) |
+| `--medgemma 4b` | Use MedGemma 4B + 4B tool-use LoRA (default) |
+| `--medgemma 27b` | Use MedGemma 27B + 27B tool-use LoRA |
+| `--port PORT` | Gradio server port (default: 8585) |
+| `--no-share` | Disable Gradio share link |
+| `--hf-cache PATH` | Hugging Face cache directory |
+| `--cvs` | Use single ResNet18 CVS model (default: 4-model ensemble) |
+
+## Model weights summary
+
+| File / folder | Size (approx) | Description |
+|---------------|----------------|-------------|
+| `tool_use_lora_checkpoints/medgemma-4b-tool-use-lora/` | ~2.7 GB | Tool-use LoRA (4B) — default LLM |
+| `tool_use_lora_checkpoints/medgemma-27b-tool-use-lora/` | — | Tool-use LoRA (27B) |
+| `phase_detection_workflow/best_phase.pt` | ~91 MB | Phase detection (8 phases) |
+| `scene_segmentation_utils/.../best.pt` | ~48 MB | Scene segmentation (13 classes) |
+| `frame_attributes_tasks/.../best_cholec20_multilabel.pt` | ~91 MB | Frame attributes |
+| `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` | ~91 MB each | Triplet tool/verb/target |
+| `instrument_triplet_tasks/runs/tool/.../best.pt` | ~134 MB | Instrument detection |
+| `object_detection/best_detector_balanced.pt` | ~6 MB | Merged object detector (13 classes) |
+| `cvs_models/log/*/best_model.pth` | 43–513 MB | CVS models |
+| `ssg_vqa_finetuning/.../checkpoint-7400/` | ~2.7 GB | SSG VQA LoRA |
+
+## RAG index
+
+The RAG tool uses a pre-built ChromaDB index under `surgical_rag/data/rag_index/`. If that folder exists and contains `chroma.sqlite3`, the tool is enabled. To rebuild the index you need the full surgical_rag pipeline (not included in this minimal runtime layout); the release assumes the index is already built.
+
+## License and citation
+
+See repository license and citation instructions for the Surgical Co-Pilot and referenced datasets (Cholec80, CholecT50, CholecTrack20, CholecSeg8k, etc.).
