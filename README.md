@@ -59,13 +59,11 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 
 ```bash
 
-# 1. Clone this repo and MedRAX (agent framework)
-git clone <this-repo>
-cd surgical_copilot_release
-git clone https://github.com/bowang-lab/MedRAX.git
-pip install -e MedRAX
+# 1. Clone OxSurGemma and MedRAX (agent framework)
+git clone https://github.com/PramitSaha/OxSurGemma.git
+cd OxSurGemma
 
-# 2. Install dependencies (from repo root)
+# 2. Install OxSurGemma dependencies (from repo root)
 pip install -e .
 
 # 3. Environment (for local LLM: Hugging Face token; for OpenAI: API key)
