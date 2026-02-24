@@ -6,7 +6,8 @@ An AI-powered surgical co-pilot for laparoscopic cholecystectomy that combines a
 
 A real-time demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecystectomy.
 
-[![Surgical AI Co-Pilot Demo](https://img.youtube.com/vi/YsTkc-kAEr0/0.jpg)](https://www.youtube.com/watch?v=YsTkc-kAEr0) [![Surgical AI Co-Pilot Demo – Extended](https://img.youtube.com/vi/f9_w6XSPPZI/0.jpg)](https://www.youtube.com/watch?v=f9_w6XSPPZI)
+[![Surgical AI Co-Pilot Demo](https://img.youtube.com/vi/YsTkc-kAEr0/0.jpg)](https://www.youtube.com/watch?v=YsTkc-kAEr0) [![Surgical AI Co-Pilot Demo – Extended](https://img.youtube.com/vi/f9_w6XSPPZI/0.jpg)](https://www.youtube.com/watch?v=f9_w6XSPPZI) 
+[![Surgical AI Co-Pilot – Architecture Overview](https://img.youtube.com/vi/P4oygElgkSk/0.jpg)](https://www.youtube.com/watch?v=P4oygElgkSk) [![Surgical AI Co-Pilot – End-to-End Demo](https://img.youtube.com/vi/5Cfh3c_hNr0/0.jpg)](https://www.youtube.com/watch?v=5Cfh3c_hNr0)
 ## Quick start
 
 ```bash
