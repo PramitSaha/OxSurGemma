@@ -4,8 +4,7 @@ A MedGemma-powered surgical co-pilot for laparoscopic cholecystectomy that combi
 
 ## 🎥 Demo Videos
 
-Demonstration of the Surgical AI Co-Pilot assistance during laparoscopic cholecystectomy.
-
+Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecystectomy. Click on the videos below to explore.
 <table>
   <tr>
     <td align="center">
