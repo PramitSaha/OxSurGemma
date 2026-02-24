@@ -6,8 +6,6 @@ An AI-powered surgical co-pilot for laparoscopic cholecystectomy that combines a
 
 Demonstration of the Surgical AI Co-Pilot assistance during laparoscopic cholecystectomy.
 
-## 🎥 Demo Videos
-
 <table>
   <tr>
     <td align="center">
