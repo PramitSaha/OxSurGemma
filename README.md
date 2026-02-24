@@ -89,7 +89,7 @@ The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate sur
 | **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
 | **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/best.pt` |
 | **Critical View of Safety** | ColeNet (ResNet18 or ensemble) | 3 CVS criteria | `cvs_models/log/best_model.pth` |
-| **Frame Attributes** | ResNet50 + dual heads | 4 operators + 10 conditions | `frame_attributes_tasks/.../best_cholec20_multilabel.pt` |
+| **Frame Attributes** | ResNet50 + dual heads | 4 operators + 10 conditions | `frame_attributes_tasks/cholec20_multilabel_checkpoints/best_cholec20_multilabel.pt` |
 | **Triplet Recognition** | ResNet50 (3 heads) + YOLOv8 | Tool/verb/target + 100-class triplet | `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` |
 | **Object Detection** | YOLOv8 | 13 classes (anatomy + instruments) | `object_detection/best_detector_balanced.pt` |
 | **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/best.pt` |
@@ -104,7 +104,7 @@ The repo is organised so that the **core app** (`surgical_copilot/`), **model we
 ### Directory structure
 
 ```
-surgical_copilot_release/
+OxSurGemma/
 ├── run.sh                      # Launcher: ./run.sh [--gradio] [--port 8585]
 ├── .env.example                # Copy to .env and set HF_TOKEN or OPENAI_API_KEY
 ├── pyproject.toml              # pip install -e . from repo root
@@ -124,7 +124,6 @@ surgical_copilot_release/
 │   ├── audio/                  # STT / TTS (Gradio)
 │   └── docs/system_prompts.txt # Agent system prompts
 │
-├── MedRAX/                     # Agent framework (clone separately; required)
 │
 ├── tool_use_lora_checkpoints/  # MedGemma LoRA for tool-use routing (default LLM)
 │   ├── medgemma-4b-tool-use-lora/
@@ -136,7 +135,7 @@ surgical_copilot_release/
 │
 ├── scene_segmentation_utils/   # Scene segmentation
 │   ├── cholecseg8k_yolov8.py   # CLASS_NAMES (required at runtime)
-│   └── runs/segment/train/weights/best.pt
+│   └── runs/best.pt
 │
 ├── frame_attributes_tasks/     # Frame attributes (inference only)
 │   ├── cholec20_model.py
