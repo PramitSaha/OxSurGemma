@@ -84,7 +84,7 @@ The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate sur
 
 ### Tools and models
 
-| Tool | Model | Architecture | Where to place the Weights |
+| Tool | Model | Architecture | Expected file location |
 |------|-------|---------------|---------|
 | **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
 | **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/.../best.pt` |
