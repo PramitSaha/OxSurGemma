@@ -48,11 +48,11 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 | MedGemma-4B-LoRA (Fine-tuned for Tool use and Surgeon-facing Response)| [pramit-saha/oxsurgemma-tool-use-lora-4b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-4b) |
 | MedGemma-4B-LoRA (Fine-tuned for Surgical Scene Graph VQA) | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
 | Critical View of Safety (ResNet18, ResNet50, DenseNet, EfficientNet) | [pramit-saha/oxsurgemma-cvs](https://huggingface.co/pramit-saha/oxsurgemma-cvs) |
-| Surgical Instruments and Critical Anatomy Detection | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
-| Scene Segmentation | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
-| Phase Detection | [pramit-saha/oxsurgemma-phase-detection](https://huggingface.co/pramit-saha/oxsurgemma-phase-detection) |
-| CholecT50 Heads | [pramit-saha/oxsurgemma-cholect50-heads](https://huggingface.co/pramit-saha/oxsurgemma-cholect50-heads) |
-| Frame Attributes | [pramit-saha/oxsurgemma-frame-attributes](https://huggingface.co/pramit-saha/oxsurgemma-frame-attributes) |
+| Surgical Instrument and Critical Anatomy Detection (YOLOv8) | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
+| Scene Segmentation (YOLOv8-seg) | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
+| Surgical Phase Detection (ResNet50) | [pramit-saha/oxsurgemma-phase-detection](https://huggingface.co/pramit-saha/oxsurgemma-phase-detection) |
+| Surgical Triplet Recognition (ResNet50) | [pramit-saha/oxsurgemma-cholect50-heads](https://huggingface.co/pramit-saha/oxsurgemma-cholect50-heads) |
+| Surgical Monitoring Module (ResNet50) | [pramit-saha/oxsurgemma-frame-attributes](https://huggingface.co/pramit-saha/oxsurgemma-frame-attributes) |
 
 
 ## Quick start
