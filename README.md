@@ -274,7 +274,3 @@ export OPENAI_API_KEY=sk-...
 ## RAG index
 
 The RAG tool uses a pre-built ChromaDB index under `surgical_rag/data/rag_index/`. If that folder exists and contains `chroma.sqlite3`, the tool is enabled. To rebuild the index you need the full surgical_rag pipeline (not included in this minimal runtime layout); the release assumes the index is already built.
-
-## License and citation
-
-See repository license and citation instructions for the Surgical Co-Pilot and referenced datasets (Cholec80, CholecT50, CholecTrack20, CholecSeg8k, etc.).
