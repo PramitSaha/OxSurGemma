@@ -2,10 +2,11 @@
 
 An AI-powered surgical co-pilot for laparoscopic cholecystectomy that combines a multi-tool agent framework with specialised vision models, LLM-based tool routing, speech I/O, and RAG retrieval.
 
-## 🎥 Demo
+## 🎥 Demo Video
 
-[![Breast Ultrasound Agent Demo](demo_thumbnail.png)](https://www.youtube.com/watch?v=YsTkc-kAEr0&list=PL24QOMZ8dhwZRRxOn4rXhqqEmyTZzbC54&index=4)
+A real-time demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecystectomy.
 
+[![Surgical AI Co-Pilot Demo](https://img.youtube.com/vi/YsTkc-kAEr0/0.jpg)](https://www.youtube.com/watch?v=YsTkc-kAEr0)
 ## Quick start
 
 ```bash
