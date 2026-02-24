@@ -80,11 +80,11 @@ See [Setup](#setup) and [Running](#running) below for details.
 
 ## System overview
 
-The system uses a **MedRAX agent** (LangGraph + LangChain) to orchestrate surgical analysis tools. A user query (text or voice) is routed to the appropriate tool(s) via an LLM. **By default the LLM is local:** MedGemma (4B or 27B) with a **tool-use LoRA adapter** from `tool_use_lora_checkpoints/`, so no OpenAI API is required. You can switch to OpenAI (e.g. GPT-4o) by setting `SURGICAL_COPILOT_LLM_BACKEND=openai` and `OPENAI_API_KEY`.
+The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate surgical analysis tools. A user query (text or voice) is routed to the appropriate tool(s) via an LLM. **By default the LLM is local:** MedGemma (4B or 27B) with a **tool-use LoRA adapter** from `tool_use_lora_checkpoints/`. The user can download the Huggingface model weights and place them in corresponding folders as mentioned below:
 
 ### Tools and models
 
-| Tool | Model | Architecture | Weights |
+| Tool | Model | Architecture | Where to place the Weights |
 |------|-------|---------------|---------|
 | **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
 | **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/.../best.pt` |
@@ -93,7 +93,7 @@ The system uses a **MedRAX agent** (LangGraph + LangChain) to orchestrate surgic
 | **Triplet Recognition** | ResNet50 (3 heads) + YOLOv8 | Tool/verb/target + 100-class triplet | `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` |
 | **Object Detection** | YOLOv8 | 13 classes (anatomy + instruments) | `object_detection/best_detector_balanced.pt` |
 | **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/.../best.pt` |
-| **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/.../checkpoint-7400/` (or checkpoint-3800) |
+| **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/.../checkpoint-7400/`|
 | **RAG Retrieval** | ChromaDB + embeddings | Textbook retrieval | `surgical_rag/data/rag_index/` |
 | **Speech I/O** | Whisper / TTS | ASR and synthesis | Downloaded at runtime |
 
