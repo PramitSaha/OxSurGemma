@@ -87,13 +87,13 @@ The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate sur
 | Tool | Model | Architecture | Expected file location |
 |------|-------|---------------|---------|
 | **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
-| **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/.../best.pt` |
-| **Critical View of Safety** | ColeNet (ResNet18 or ensemble) | 3 CVS criteria | `cvs_models/log/*/best_model.pth` |
+| **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/best.pt` |
+| **Critical View of Safety** | ColeNet (ResNet18 or ensemble) | 3 CVS criteria | `cvs_models/log/best_model.pth` |
 | **Frame Attributes** | ResNet50 + dual heads | 4 operators + 10 conditions | `frame_attributes_tasks/.../best_cholec20_multilabel.pt` |
 | **Triplet Recognition** | ResNet50 (3 heads) + YOLOv8 | Tool/verb/target + 100-class triplet | `instrument_triplet_tasks/cholect50_checkpoints/best_*.pt` |
 | **Object Detection** | YOLOv8 | 13 classes (anatomy + instruments) | `object_detection/best_detector_balanced.pt` |
-| **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/.../best.pt` |
-| **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/.../checkpoint-7400/`|
+| **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/best.pt` |
+| **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/checkpoint-7400/`|
 | **RAG Retrieval** | ChromaDB + embeddings | Textbook retrieval | `surgical_rag/data/rag_index/` |
 | **Speech I/O** | Whisper / TTS | ASR and synthesis | Downloaded at runtime |
 
