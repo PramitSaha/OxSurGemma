@@ -84,8 +84,9 @@ The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate sur
 
 ### Tools and models
 
-| Tool | Model | Architecture | Expected file location |
+| Tool | Model | Details | Expected file location |
 |------|-------|---------------|---------|
+| **Agentic Orchestrator** | Fine-tuned MedGemma | 7 tools + Memory + RAG | `tool_use_lora_checkpoints/` |
 | **Phase Detection** | ResNet50 | 8 phases | `phase_detection_workflow/best_phase.pt` |
 | **Scene Segmentation** | YOLOv8-seg | 13 classes | `scene_segmentation_utils/runs/best.pt` |
 | **Critical View of Safety** | ColeNet (ResNet18 or ensemble) | 3 CVS criteria | `cvs_models/log/best_model.pth` |
@@ -162,7 +163,7 @@ OxSurGemma/
     ├── rag_retrieval.py
     └── data/rag_index/         # ChromaDB index (build once)
 ```
-
+The user is requested to create the directories object_detection/, ssg_vqa_finetuning/, and tool_use_lora_checkpoints/ before adding the model weights inside.
 ## Setup
 
 ### 1. Clone MedRAX (required)
