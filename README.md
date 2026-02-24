@@ -15,14 +15,14 @@ Demonstration of the Surgical AI Co-Pilot assistance during laparoscopic cholecy
         <img src="https://img.youtube.com/vi/YsTkc-kAEr0/0.jpg" width="400">
       </a>
       <br>
-      <b>Live System Demonstration</b>
+      <b> Part 1 </b>
     </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=f9_w6XSPPZI">
         <img src="https://img.youtube.com/vi/f9_w6XSPPZI/0.jpg" width="400">
       </a>
       <br>
-      <b>Extended Technical Walkthrough</b>
+      <b> Part 2 </b>
     </td>
   </tr>
   <tr>
@@ -31,14 +31,14 @@ Demonstration of the Surgical AI Co-Pilot assistance during laparoscopic cholecy
         <img src="https://img.youtube.com/vi/P4oygElgkSk/0.jpg" width="400">
       </a>
       <br>
-      <b>Architecture & Agent Reasoning</b>
+      <b> Part 3 </b>
     </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=5Cfh3c_hNr0">
         <img src="https://img.youtube.com/vi/5Cfh3c_hNr0/0.jpg" width="400">
       </a>
       <br>
-      <b>Full Pipeline (End-to-End)</b>
+      <b> Part 4 (End-to-End)</b>
     </td>
   </tr>
 </table>
