@@ -193,12 +193,6 @@ Copy `.env.example` to `.env` and set as needed.
 - `HF_TOKEN` — Hugging Face token (required for gated MedGemma). Accept the model terms at [huggingface.co/google/medgemma-4b-it](https://huggingface.co/google/medgemma-4b-it), then `huggingface-cli login` or `export HF_TOKEN=hf_...`.
 - Optional: `TRANSFORMERS_CACHE` or `HF_HOME` — cache directory for downloads (default: repo `hf_cache/`).
 
-**Using OpenAI instead of local MedGemma:**
-
-- `SURGICAL_COPILOT_LLM_BACKEND=openai`
-- `OPENAI_API_KEY=sk-...`
-
-**Other optional variables:** `MEDRAX_DIR`, `SURGICAL_COPILOT_LOCAL_MODEL`, `SURGICAL_COPILOT_TOOL_USE_LORA`, etc. (see `.env.example`).
 
 ### 4. External files needed to run `main.py`
 
