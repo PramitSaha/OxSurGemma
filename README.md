@@ -66,10 +66,9 @@ cd OxSurGemma
 # 2. Install OxSurGemma dependencies (from repo root)
 pip install -e .
 
-# 3. Environment (for local LLM: Hugging Face token; for OpenAI: API key)
+# 3. Environment (for local LLM: Hugging Face token)
 cp .env.example .env
-# Local (default): set HF_TOKEN=... (accept MedGemma terms at huggingface.co first)
-# OpenAI: set SURGICAL_COPILOT_LLM_BACKEND=openai and OPENAI_API_KEY=...
+set HF_TOKEN=... (accept MedGemma terms at huggingface.co first)
 
 # 4. Run (uses MedGemma 4B + tool-use LoRA by default)
 ./run.sh                      # terminal chat
