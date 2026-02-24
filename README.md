@@ -49,7 +49,7 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 | MedGemma-4B-LoRA (Fine-tuned for Surgical Scene Graph VQA) | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
 | Critical View of Safety (ResNet18, ResNet50, DenseNet, EfficientNet) | [pramit-saha/oxsurgemma-cvs](https://huggingface.co/pramit-saha/oxsurgemma-cvs) |
 | Surgical Instrument and Critical Anatomy Detection (YOLOv8) | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
-| Scene Segmentation (YOLOv8-seg) | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
+| Surgical Scene Segmentation (YOLOv8-seg) | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
 | Surgical Phase Detection (ResNet50) | [pramit-saha/oxsurgemma-phase-detection](https://huggingface.co/pramit-saha/oxsurgemma-phase-detection) |
 | Surgical Triplet Recognition (ResNet50) | [pramit-saha/oxsurgemma-cholect50-heads](https://huggingface.co/pramit-saha/oxsurgemma-cholect50-heads) |
 | Surgical Monitoring Module (ResNet50) | [pramit-saha/oxsurgemma-frame-attributes](https://huggingface.co/pramit-saha/oxsurgemma-frame-attributes) |
