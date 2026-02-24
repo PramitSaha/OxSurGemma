@@ -38,7 +38,7 @@ Demonstration of the Surgical AI Co-Pilot assistance during laparoscopic cholecy
         <img src="https://img.youtube.com/vi/5Cfh3c_hNr0/0.jpg" width="400">
       </a>
       <br>
-      <b> Part 4 (End-to-End)</b>
+      <b> Part 4 </b>
     </td>
   </tr>
 </table>
