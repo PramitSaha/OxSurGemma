@@ -94,7 +94,7 @@ The system uses a **LLM-based agent** (LangGraph + LangChain) to orchestrate sur
 | **Object Detection** | YOLOv8 | 13 classes (anatomy + instruments) | `object_detection/best_detector_balanced.pt` |
 | **Instrument Tracking** | YOLOv8 | 6 or 7 tools | `instrument_triplet_tasks/runs/tool/best.pt` |
 | **SSG VQA** | MedGemma-4B + LoRA | Visual QA | `ssg_vqa_finetuning/checkpoint-7400/`|
-| **RAG Retrieval** | ChromaDB + embeddings | Textbook retrieval | `surgical_rag/data/rag_index/` |
+| **RAG Retrieval** | ChromaDB + embeddings | Standard information retrieval | `surgical_rag/data/rag_index/` |
 | **Speech I/O** | Whisper / TTS | ASR and synthesis | Downloaded at runtime |
 
 ## Project layout
