@@ -42,6 +42,21 @@ Demonstration of the Surgical AI Co-Pilot assisting during laparoscopic cholecys
 ## Quick start
 
 ```bash
+
+## 🤗 Model Zoo (Hugging Face)
+
+| Component | Weights |
+|---|---|
+| Critical View of Safety (CVS) | [pramit-saha/oxsurgemma-cvs](https://huggingface.co/pramit-saha/oxsurgemma-cvs) |
+| Object Detection | [pramit-saha/oxsurgemma-object-detection](https://huggingface.co/pramit-saha/oxsurgemma-object-detection) |
+| Scene Segmentation | [pramit-saha/oxsurgemma-scene-segmentation](https://huggingface.co/pramit-saha/oxsurgemma-scene-segmentation) |
+| Phase Detection | [pramit-saha/oxsurgemma-phase-detection](https://huggingface.co/pramit-saha/oxsurgemma-phase-detection) |
+| CholecT50 Heads | [pramit-saha/oxsurgemma-cholect50-heads](https://huggingface.co/pramit-saha/oxsurgemma-cholect50-heads) |
+| Frame Attributes | [pramit-saha/oxsurgemma-frame-attributes](https://huggingface.co/pramit-saha/oxsurgemma-frame-attributes) |
+| SSG VQA | [pramit-saha/oxsurgemma-ssg-vqa](https://huggingface.co/pramit-saha/oxsurgemma-ssg-vqa) |
+| Tool-use LoRA (27B) | [pramit-saha/oxsurgemma-tool-use-lora-27b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-27b) |
+| Tool-use LoRA (4B) | [pramit-saha/oxsurgemma-tool-use-lora-4b](https://huggingface.co/pramit-saha/oxsurgemma-tool-use-lora-4b) |
+
 # 1. Clone this repo and MedRAX (agent framework)
 git clone <this-repo>
 cd surgical_copilot_release
